@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/blog/blog-list.css}"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Nerko+One&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f1b017441a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container" th:object="${blog}">
+        <div class="item">
+            <div class="entry-date"> <h5 th:text="'Posted on ' + ${blog.postedDate}">Posted on 12/11/2020</h5></div>
+            <h1>List of Blogs</h1>
+
+            <div class="user-link">
+                <span th:if="${blog.id > 1}"><a th:href="@{/get-list/{id}(id=${blog.id - 1})}" class="button"><i class="fas fa-backward"></i></a></span>
+                <span><a th:href="@{/main}" class="button">Back to Menu</a> </span>
+                <span th:unless="${blog.id} == ${count}"><a th:href="@{/get-list/{id}(id=${blog.id + 1})}" class="button"><i class="fas fa-forward"></i></a> </span>
+            </div>
+        </div>
+
+        <div class="header">
+            <div class="header-text"> <p th:text="${blog.header}"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, laboriosam </p> </div>
+        </div>
+
+         <div class="text">
+            <div class="main-text"> <p th:text="${blog.mainText}"> Village did removed enjoyed explain nor ham saw calling talking. Securing as informed declared or margaret. Joy horrible moreover man feelings own shy. Request norland neither mistake for yet. Between the for morning assured country believe. On even feet time have an no at. Relation so in confined smallest children unpacked delicate. Why sir end be post face snug. Introduced imprudence see say unpleasing devonshire acceptance son. Exeter longer wisdom gay nor design age. Am weather to entered norland no in showing service. Nor repeated speaking shy appetite. Excited it hastily an pasture it observe. Snug hand how dare here too. Village did removed enjoyed explain nor e for yet. Between the for morning assured country believe. On eimprudence particular had eatunsatiable. Introduced imprudence see sayd explain nor e for yet. Between the for morning assured country believe. On eimprudence particular had acked delicate. Why sir end be post face snug. Introduced imprudence see say mprudence see sayd explain nor e for yet. Between the for morning assured country believe. On eimprudence particular had.  </p>
+                <div class="admin-link">
+                    <span><a th:href="@{/edit/{id}(id=${blog.id})}" class="button">Edit<i class="fas fa-pencil-alt"></i></a> </span>
+                    <span><a th:href="@{/delete/{id}(id=${blog.id})}">Delete <i class="fas fa-times"></i></a>  </span>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="extra-link">
+            <div><a href="#" class="button"><i class="far fa-heart"></i> Like</a></div>
+            <div><a href="#" class="button"><i class="fas fa-comment-medical"></i> Comment</a> </div>
+        </div>
+
+        <div class="fixed-text">
+            <h4>Comment Section</h4>
+       </div>
+
+       <div class="comments">
+        <div class="com-date"><h5>Posted on 12/11/2020</h5></div>
+        <div class="comments-text">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi ut assumenda minima, eligendi quisquam sunt. Corporis in magni at odit vero porro minima maxime ipsum. Itaque aperiam, distinctio nulla eius velit asperiores repudiandae aspernatur voluptatibus amet ipsam! Ipsum, laborum. Sapiente, veniam pariatur qui, ipsam iste alias nisi quos harum beatae fugiat cum explicabo, autem tempore eligendi enim nihil inventore? Hic!</p>
+        </div>
+        <div class="com-name"><h5>Commented by Johnny Bravo</h5></div>
+       </div>
+
+    </div>
+</body>
+</html>
