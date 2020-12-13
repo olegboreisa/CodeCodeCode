@@ -28,4 +28,7 @@ public class Comment {
     @Column(name = "text")
     private String text;
 
+    @ManyToOne
+    private Blog blog;
+
 }

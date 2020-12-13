@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import lt.boreisa.finalblog.Model.Blog;
 import lt.boreisa.finalblog.Model.Comment;
 import lt.boreisa.finalblog.Repository.BlogRepo;
+import lt.boreisa.finalblog.Repository.CommentRepo;
 import lt.boreisa.finalblog.Service.BlogService;
-import lt.boreisa.finalblog.Service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -24,13 +26,13 @@ public class BlogC {
 
     // [GETTING METHODS TO EXTRACT DATA FROM DATABASE]
     private final BlogRepo blogRepo;
-    private final CommentService commentService;
+    private final CommentRepo commentRepo;
     private final BlogService blogService;
 
     @Autowired
-    public BlogC(BlogRepo blogRepo, CommentService commentService, BlogService blogService) {
+    public BlogC(BlogRepo blogRepo, CommentRepo commentRepo, BlogService blogService) {
         this.blogRepo = blogRepo;
-        this.commentService = commentService;
+        this.commentRepo = commentRepo;
         this.blogService = blogService;
     }
 
@@ -90,14 +92,16 @@ public class BlogC {
         List<Blog> listBlogs = page.getContent(); // [WE GET A LIST OF BLOG OBJECTS THAT ARE PAGINATED]
 
         model.addAttribute("currentPage", pageNo);
-        log.info("curP {}", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
-        log.info("totalP {}", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
-        log.info("totalElem {}", page.getTotalElements());
         model.addAttribute("listBlogs", listBlogs);
 
+        List<Comment> relatedComments = commentRepo.findAllRelatedBlogById(pageNo);
+        model.addAttribute("commentList", relatedComments);
 
+        Comment give = commentRepo.findWhoCommented("Oleg");
+        log.info("list {}", give);
+        model.addAttribute("comLi", give);
         return "blog/blog-list";
     }
 }

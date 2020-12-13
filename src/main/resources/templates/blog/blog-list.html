@@ -68,12 +68,12 @@
             <h4>Comment Section</h4>
        </div>
 
-       <div class="comments">
-        <div class="com-date"><h5>Posted on 12/11/2020</h5></div>
-        <div class="comments-text">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi ut assumenda minima, eligendi quisquam sunt. Corporis in magni at odit vero porro minima maxime ipsum. Itaque aperiam, distinctio nulla eius velit asperiores repudiandae aspernatur voluptatibus amet ipsam! Ipsum, laborum. Sapiente, veniam pariatur qui, ipsam iste alias nisi quos harum beatae fugiat cum explicabo, autem tempore eligendi enim nihil inventore? Hic!</p>
+       <div class="comments" th:each="comLi:${commentList}">
+           <div class="com-date"><h5 th:text="'Poooooosted on ' + ${comLi.postedDate}">Posted on 12/11/2020</h5></div>
+            <div class="comments-text">
+            <p th:text="${comLi.text}">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi ut assumenda minima, eligendi quisquam sunt. Corporis in magni at odit vero porro minima maxime ipsum. Itaque aperiam, distinctio nulla eius velit asperiores repudiandae aspernatur voluptatibus amet ipsam! Ipsum, laborum. Sapiente, veniam pariatur qui, ipsam iste alias nisi quos harum beatae fugiat cum explicabo, autem tempore eligendi enim nihil inventore? Hic!</p>
         </div>
-        <div class="com-name"><h5>Commented by Johnny Bravo</h5></div>
+        <div class="com-name"><h5 th:text="'Commented by ' + ${comLi.name} + ' ' + ${comLi.secondName}">Commented by Johnny Bravo</h5></div>
        </div>
 
     </div>

@@ -1,6 +1,7 @@
 package lt.boreisa.finalblog.Model;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -31,13 +32,14 @@ public class Blog {
     @Column(name = "main_text")
     private String mainText;
 
-    @OneToMany
-    @JoinTable(
-            name = "blog_com",
-            joinColumns = @JoinColumn(
-                    name = "blog_id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "comment_id"
-            ))
+    @ToString.Exclude
+    @OneToMany (mappedBy = "blog", targetEntity = Comment.class) // [COMMENT IS HANDLING MAPPING]
+//    @JoinTable(
+//            name = "blog_com",
+//            joinColumns = @JoinColumn(
+//                    name = "blog_id"),
+//            inverseJoinColumns = @JoinColumn(
+//                    name = "comment_id"
+//            ))
     private List<Comment> comments = new ArrayList<>();
 }
