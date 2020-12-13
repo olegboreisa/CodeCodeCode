@@ -33,7 +33,7 @@ public class Blog {
     private String mainText;
 
     @ToString.Exclude
-    @OneToMany (mappedBy = "blog", targetEntity = Comment.class) // [COMMENT IS HANDLING MAPPING]
+    @OneToMany (cascade = CascadeType.ALL,mappedBy = "blog", targetEntity = Comment.class) // [COMMENT IS HANDLING MAPPING]
 //    @JoinTable(
 //            name = "blog_com",
 //            joinColumns = @JoinColumn(

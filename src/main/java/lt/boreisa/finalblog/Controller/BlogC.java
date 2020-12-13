@@ -6,16 +6,19 @@ import lt.boreisa.finalblog.Model.Comment;
 import lt.boreisa.finalblog.Repository.BlogRepo;
 import lt.boreisa.finalblog.Repository.CommentRepo;
 import lt.boreisa.finalblog.Service.BlogService;
+import lt.boreisa.finalblog.Service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,12 +31,14 @@ public class BlogC {
     private final BlogRepo blogRepo;
     private final CommentRepo commentRepo;
     private final BlogService blogService;
+    private final CommentService commentService;
 
     @Autowired
-    public BlogC(BlogRepo blogRepo, CommentRepo commentRepo, BlogService blogService) {
+    public BlogC(BlogRepo blogRepo, CommentRepo commentRepo, BlogService blogService, CommentService commentService) {
         this.blogRepo = blogRepo;
         this.commentRepo = commentRepo;
         this.blogService = blogService;
+        this.commentService = commentService;
     }
 
     private Long getCount () {
@@ -76,32 +81,45 @@ public class BlogC {
     @RequestMapping(path = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBlog (@PathVariable Long id) {
         blogRepo.deleteById(id);
-        return "redirect:/main";
+        commentRepo.customDeleteAllById(id);
+        return "redirect:/get-list/";
     }
+
     @GetMapping("/get-list")
     public String getPaginatedList (Model model) {
-        return findPaginated(1, model);
+        return findPaginated(1, model, 1);
     }
 
     //TODO: Method for handling pagination [11:25]
     @GetMapping("/get-list/{pageNo}")
-    public String findPaginated (@PathVariable (value = "pageNo") int pageNo, Model model) {
-        int pageSize = 1; // [HOW MANY ELEMENTS ON THE PAGE. CAN BE DECLARED IN UI]
+    public String findPaginated (@PathVariable (value = "pageNo") int pageNom, Model model, @RequestParam (value = "papa") int id) {
+        // [HOW MANY ELEMENTS ON THE PAGE. CAN BE DECLARED IN UI]
+        int pageSize = 1;
+        log.info("opop {} ", pageNom);
+        Page<Blog> pageB = blogService.findPaginated(pageNom, pageSize);
+        // [WE GET A LIST OF BLOG OBJECTS THAT ARE PAGINATED]
+        List<Blog> listBlogs = pageB.getContent();
 
-        Page<Blog> page = blogService.findPaginated(pageNo, pageSize);
-        List<Blog> listBlogs = page.getContent(); // [WE GET A LIST OF BLOG OBJECTS THAT ARE PAGINATED]
-
-        model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("currentPage", pageNom);
+        model.addAttribute("totalPages", pageB.getTotalPages());
+        model.addAttribute("totalItems", pageB.getTotalElements());
         model.addAttribute("listBlogs", listBlogs);
 
-        List<Comment> relatedComments = commentRepo.findAllRelatedBlogById(pageNo);
-        model.addAttribute("commentList", relatedComments);
+        Long neededId = null;
+        for (Blog blog : listBlogs) {
+            neededId = blog.getId();
+        }
+        //TODO: TRYING TO DO A PAGINATED CUSTOM COMMENT
+        Pageable pageableC = PageRequest.of(0, 1);
+        //TODO: IF I DELETE A BLOG pageNom ALWAYS NUSIMUŠA IR TADA KOMENTARAS PRIKLAUSO JAU KITAM ĮRAŠUI
+        Page<Comment> pageC = commentRepo.findAllCustomComments(neededId, pageableC);
+        List<Comment> pageCom = pageC.getContent();
 
-        Comment give = commentRepo.findWhoCommented("Oleg");
-        log.info("list {}", give);
-        model.addAttribute("comLi", give);
+        model.addAttribute("currentPage2", neededId);
+        model.addAttribute("totalPages2", pageC.getTotalPages());
+        model.addAttribute("totalItems2", pageC.getTotalElements());
+        model.addAttribute("listCustomComment", pageCom);
+
         return "blog/blog-list";
     }
 }

@@ -16,48 +16,25 @@
             <div class="entry-date"> <h5 th:text="'Posted on ' + ${blog.postedDate}">Posted on 12/11/2020</h5></div>
             <h1>List of Blogs</h1>
 
-<!--                [MY SOLUTION TO PROBLEM THAT CREATES EVEN MORE PROBLEMS #LIFEisLIFE]-->
-<!--            <div class="user-link">-->
-<!--                <span th:if="${blog.id > 1}"><a th:href="@{/get-list/{id}(id=${blog.id - 1})}" class="button"><i class="fas fa-backward"></i></a></span>-->
-<!--                <span><a th:href="@{/main}" class="button">Back to Menu</a> </span>-->
-<!--                <span th:unless="${blog.id} == ${count}"><a th:href="@{/get-list/{id}(id=${blog.id + 1})}" class="button"><i class="fas fa-forward"></i></a> </span>-->
-<!--            </div>-->
-
             <div class="user-link">
                 <span th:if="${currentPage > 1}"><a th:href="@{'/get-list/' + ${currentPage - 1}}" class="button"><i class="fas fa-backward"></i></a></span>
                 <span><a th:href="@{/main}" class="button">Back to Menu</a> </span>
                 <span th:if="${currentPage < totalPages}"><a th:href="@{'/get-list/' + ${currentPage + 1}}" class="button"><i class="fas fa-forward"></i></a> </span>
             </div>
 
-        <div th:each="blog: ${listBlogs}">
+
             <div class="header">
-                <div class="header-text"> <p th:text="${blog.header}"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, laboriosam </p> </div>
+                <div class="header-text" th:each="blog: ${listBlogs}"> <p th:text="${blog.header}"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, laboriosam </p> </div>
             </div>
 
              <div class="text">
-                <div class="main-text"> <p th:text="${blog.mainText}"> Village did removed enjoyed explain nor ham saw calling talking. Securing as informed declared or margaret. Joy horrible moreover man feelings own shy. Request norland neither mistake for yet. Between the for morning assured country believe. On even feet time have an no at. Relation so in confined smallest children unpacked delicate. Why sir end be post face snug. Introduced imprudence see say unpleasing devonshire acceptance son. Exeter longer wisdom gay nor design age. Am weather to entered norland no in showing service. Nor repeated speaking shy appetite. Excited it hastily an pasture it observe. Snug hand how dare here too. Village did removed enjoyed explain nor e for yet. Between the for morning assured country believe. On eimprudence particular had eatunsatiable. Introduced imprudence see sayd explain nor e for yet. Between the for morning assured country believe. On eimprudence particular had acked delicate. Why sir end be post face snug. Introduced imprudence see say mprudence see sayd explain nor e for yet. Between the for morning assured country believe. On eimprudence particular had.  </p>
-                    <div class="admin-link">
+                <div class="main-text" th:each="blog: ${listBlogs}"> <p th:text="${blog.mainText}"> Village did removed enjoyed explain nor ham saw calling talking. Securing as informed declared or margaret. Joy horrible moreover man feelings own shy. Request norland neither mistake for yet. Between the for morning assured country believe. On even feet time have an no at. Relation so in confined smallest children unpacked delicate. Why sir end be post face snug. Introduced imprudence see say unpleasing devonshire acceptance son. Exeter longer wisdom gay nor design age. Am weather to entered norland no in showing service. Nor repeated speaking shy appetite. Excited it hastily an pasture it observe. Snug hand how dare here too. Village did removed enjoyed explain nor e for yet. Between the for morning assured country believe. On eimprudence particular had eatunsatiable. Introduced imprudence see sayd explain nor e for yet. Between the for morning assured country believe. On eimprudence particular had acked delicate. Why sir end be post face snug. Introduced imprudence see say mprudence see sayd explain nor e for yet. Between the for morning assured country believe. On eimprudence particular had.  </p>
+                    <div class="admin-link" th:each="blog: ${listBlogs}">
                         <span><a th:href="@{/edit/{id}(id=${blog.id})}" class="button">Edit<i class="fas fa-pencil-alt"></i></a> </span>
                         <span><a th:href="@{/delete/{id}(id=${blog.id})}" class="button">Delete <i class="fas fa-times"></i></a>  </span>
                     </div>
                 </div>
             </div>
-        </div>
-
-<!--        [CREATING NUMBERS TO CHANGE BLOG RECORDS [PAGINATION]] -->
-<!--        <div th:if = "${totalPages > 1}">-->
-<!--            <span>-->
-<!--                Total Records : [[${totalItems}]]-->
-<!--            </span>-->
-<!--            <div>-->
-<!--                <span th:each="i: ${#numbers.sequence(1, totalPages)}">-->
-<!--            <a th:if="${currentPage != i}" th:href="@{'/get-list/' + ${i}}">[[${i}]]</a>-->
-<!--                <span th:unless="${currentPage != i}">-->
-<!--                 [[${i}]]-->
-<!--                </span>-->
-<!--            </span>-->
-<!--            </div>-->
-<!--        </div>-->
         
         <div class="extra-link">
             <div><a href="#" class="button"><i class="far fa-heart"></i> Like</a></div>
@@ -68,13 +45,12 @@
             <h4>Comment Section</h4>
        </div>
 
-       <div class="comments" th:each="comLi:${commentList}">
+       <div class="comments" th:each="comLi:${listCustomComment}">
            <div class="com-date"><h5 th:text="'Poooooosted on ' + ${comLi.postedDate}">Posted on 12/11/2020</h5></div>
             <div class="comments-text">
             <p th:text="${comLi.text}">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi ut assumenda minima, eligendi quisquam sunt. Corporis in magni at odit vero porro minima maxime ipsum. Itaque aperiam, distinctio nulla eius velit asperiores repudiandae aspernatur voluptatibus amet ipsam! Ipsum, laborum. Sapiente, veniam pariatur qui, ipsam iste alias nisi quos harum beatae fugiat cum explicabo, autem tempore eligendi enim nihil inventore? Hic!</p>
         </div>
         <div class="com-name"><h5 th:text="'Commented by ' + ${comLi.name} + ' ' + ${comLi.secondName}">Commented by Johnny Bravo</h5></div>
-       </div>
 
     </div>
 </body>
