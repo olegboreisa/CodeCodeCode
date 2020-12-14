@@ -5,53 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" media="all"
-          th:href="@{/css/blog/blog-list.css}"/>
+          th:href="@{/css/blog/list.css}"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Nerko+One&family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f1b017441a.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="item" th:each="blog: ${listBlogs}">
-            <div class="entry-date"> <h5 th:text="'Posted on ' + ${blog.postedDate}">Posted on 12/11/2020</h5></div>
-            <h1>List of Blogs</h1>
+<div class="container">
 
-            <div class="user-link">
-                <span th:if="${currentPage > 1}"><a th:href="@{'/get-list/' + ${currentPage - 1}}" class="button"><i class="fas fa-backward"></i></a></span>
-                <span><a th:href="@{/main}" class="button">Back to Menu</a> </span>
-                <span th:if="${currentPage < totalPages}"><a th:href="@{'/get-list/' + ${currentPage + 1}}" class="button"><i class="fas fa-forward"></i></a> </span>
-            </div>
+    <div class="item1">
+        <h5 th:each="blog:${blogs}" th:text="'Posted on ' + ${blog.postedDate}">Posted on date</h5>
+        <h1>List of Blogs</h1>
 
-
-            <div class="header">
-                <div class="header-text" th:each="blog: ${listBlogs}"> <p th:text="${blog.header}"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, laboriosam </p> </div>
-            </div>
-
-             <div class="text">
-                <div class="main-text" th:each="blog: ${listBlogs}"> <p th:text="${blog.mainText}"> Village did removed enjoyed explain nor ham saw calling talking. Securing as informed declared or margaret. Joy horrible moreover man feelings own shy. Request norland neither mistake for yet. Between the for morning assured country believe. On even feet time have an no at. Relation so in confined smallest children unpacked delicate. Why sir end be post face snug. Introduced imprudence see say unpleasing devonshire acceptance son. Exeter longer wisdom gay nor design age. Am weather to entered norland no in showing service. Nor repeated speaking shy appetite. Excited it hastily an pasture it observe. Snug hand how dare here too. Village did removed enjoyed explain nor e for yet. Between the for morning assured country believe. On eimprudence particular had eatunsatiable. Introduced imprudence see sayd explain nor e for yet. Between the for morning assured country believe. On eimprudence particular had acked delicate. Why sir end be post face snug. Introduced imprudence see say mprudence see sayd explain nor e for yet. Between the for morning assured country believe. On eimprudence particular had.  </p>
-                    <div class="admin-link" th:each="blog: ${listBlogs}">
-                        <span><a th:href="@{/edit/{id}(id=${blog.id})}" class="button">Edit<i class="fas fa-pencil-alt"></i></a> </span>
-                        <span><a th:href="@{/delete/{id}(id=${blog.id})}" class="button">Delete <i class="fas fa-times"></i></a>  </span>
-                    </div>
-                </div>
-            </div>
-        
-        <div class="extra-link">
-            <div><a href="#" class="button"><i class="far fa-heart"></i> Like</a></div>
-            <div><a href="#" class="button"><i class="fas fa-comment-medical"></i> Comment</a> </div>
+        <div class="user-link">
+            <span th:if="${currentPage > 1}"><a th:href="@{'/get-list/' + ${currentPage - 1}}" class="button"><i class="fas fa-backward"></i></a></span>
+            <span><a th:href="@{/main}" class="button">Back to Menu</a></span>
+            <span th:if="${currentPage < totalPages}"><a th:href="@{'/get-list/' + ${currentPage + 1}}" class="button"><i class="fas fa-forward"></i></a></span>
         </div>
-
-        <div class="fixed-text">
-            <h4>Comment Section</h4>
-       </div>
-
-       <div class="comments" th:each="comLi:${listCustomComment}">
-           <div class="com-date"><h5 th:text="'Poooooosted on ' + ${comLi.postedDate}">Posted on 12/11/2020</h5></div>
-            <div class="comments-text">
-            <p th:text="${comLi.text}">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi ut assumenda minima, eligendi quisquam sunt. Corporis in magni at odit vero porro minima maxime ipsum. Itaque aperiam, distinctio nulla eius velit asperiores repudiandae aspernatur voluptatibus amet ipsam! Ipsum, laborum. Sapiente, veniam pariatur qui, ipsam iste alias nisi quos harum beatae fugiat cum explicabo, autem tempore eligendi enim nihil inventore? Hic!</p>
-        </div>
-        <div class="com-name"><h5 th:text="'Commented by ' + ${comLi.name} + ' ' + ${comLi.secondName}">Commented by Johnny Bravo</h5></div>
-
     </div>
+
+    <div class="item2" th:each="blog:${blogs}">
+        <div class="header-text">
+            <p th:text="${blog.header}">Header Text</p>
+        </div>
+
+        <div class="blog-text">
+            <p th:text="${blog.mainText}">Blog Text</p>
+        </div>
+    </div>
+
+    <div class="extra-link" th:each="blog:${blogs}">
+        <span><a href="#Like" class="button"><i class="far fa-heart"></i>Like</a></span>
+        <span><a href="#Comment" class="button"><i class="fas fa-comment-medical"></i>Comment</a></span>
+        <span><a th:href="@{/edit/{id}(id=${blog.id})}" class="button">Edit<i class="fas fa-pencil-alt"></i></a></span>
+        <span><a th:href="@{/delete/{id}(id=${blog.id})}" class="button">Delete<i class="fas fa-times"></i></a></span>
+    </div>
+
+    <div class="fixed-text">
+        <h4>Comment Section</h4>
+    </div>
+
+    <div class="comments">
+        <div th:each="comLi:${comList}">
+            <h5 th:text="${comLi.postedDate}">Comment Date</h5>
+            <p id="comments-text" th:text="${comLi.text}">Comment</p>
+            <h5 id="commentator" th:text="${comLi.name} + ' ' + ${comLi.secondName}">Commented by</h5>
+        </div>
+    </div>
+</div>
 </body>
 </html>

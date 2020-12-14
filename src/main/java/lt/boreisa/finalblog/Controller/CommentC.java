@@ -23,29 +23,4 @@ public class CommentC {
         this.commentRepo = commentRepo;
         this.commentService = commentService;
     }
-
-//    @GetMapping("/get-list")
-//    public String getPaginatedCommentList (Model model) {
-//        return findPaginatedCommentList(1, model);
-//    }
-//
-//    @GetMapping("/get-list/{pageNo}")
-//    public String findPaginatedCommentList (@PathVariable (value = "pageNo") int pageNo, Model model) {
-//
-//        int pageSize = 1;
-//        Page<Comment> page = commentService.findPaginatedCustomComment(pageNo, pageNo, pageSize);
-//        List<Comment> commentList = page.getContent();
-//
-//        model.addAttribute("currentPage", pageNo);
-//        log.info("pageNo{}", pageNo);
-//        model.addAttribute("totalPages", page.getTotalPages());
-//        log.info("totalPages {}", page.getTotalPages());
-//        model.addAttribute("totalItems", page.getTotalElements());
-//        log.info("totalItems {}", page.getTotalElements());
-//        model.addAttribute("listCustomComment", commentList);
-//        log.info("Comment List {}", commentList);
-//
-//
-//        return "blog/blog-list";
-//    }
 }

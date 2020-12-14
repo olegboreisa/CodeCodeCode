@@ -14,29 +14,22 @@ body {
     background-color: lemonchiffon;
 }
 
-.header .header-text, .text .main-text p, .comments {
-    font-family: 'Merriweather', serif;
-}
-
 .container {
     border: 5px solid black;
     background-color: burlywood;
     /* ------ */
     display: flex;
     flex-direction: column;
-    /* align-items: center;
-    justify-content: center; */
     /* ------ */
     width:60%;
     height:90%;
 }
 /* Main Head */
-.item {  
-    flex-basis: 10%;
+.item1 {
     border-bottom: 5px solid black;
 }
 
-.item h1, h5  {
+.item1 h1, h5  {
     text-align: center;
 }
 
@@ -52,50 +45,17 @@ body {
 }
 
 /* Blog Header */
-.header {
-    flex-basis: 5%;
-}
-
 .header-text {
     display: flex;
     justify-content: center;
     text-align: center;
-    width: 95%;
     font-size: 24px;
 }
-
-/* Blog */
-.text {
-    /* Text Open */
-    display: flex;
-    justify-content: center;
-    text-align: justify;
-    /* Text Close */
-    flex-basis: 55%;
-    /* Overflowing */
-    overflow: auto;
-}
-.main-text p {
-    font-size: 18px;
-}
-
-.main-text {
-    width: 95%;
-
-}
-
-.admin-link {
-    display: flex;
-    justify-content: flex-end;
-}
-
 
 /* Links  */
 .extra-link {
     display: flex;
-    width: 99%;
     justify-content: flex-end;
-    flex-basis: 5%;
 }
 
 /* Fixed Text */
@@ -103,24 +63,66 @@ body {
 .fixed-text {
     border-top: 5px solid black;
     border-bottom: 3px solid black;
-    flex-basis: 3%;
-
 }
 
 /* Comment Section */
 
 .comments {
-    flex-basis: 22%;
     /* ---- */
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
     flex-direction: column;
     overflow: auto;
     font-size: 16px;
 
 }
-.comments-text{
+.comments h5 {
     width: 95%;
+    text-align: start;
+}
+
+#commentator {
+    border-bottom: 3px groove chocolate;
+    margin-bottom: 1%;
+}
+#comments-text{
     text-align: justify;
+    width: 95%;
+}
+
+/* Section Height Determination */
+
+.item1 {
+    flex-basis: 10%;
+}
+
+.item2 {
+    flex-basis: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+}
+
+.item2 .header-text {
+    flex-grow: 1;
+    text-align: center;
+    width: 95%;
+}
+
+.item2 .blog-text {
+    flex-grow: 9;
+    text-align: justify;
+    width: 95%;
+}
+
+.extra-link {
+    flex-basis: 5%;
+}
+
+.fixed-text {
+    flex-basis: 5%;
+}
+
+.comments {
+    flex-basis: 25%;
 }
