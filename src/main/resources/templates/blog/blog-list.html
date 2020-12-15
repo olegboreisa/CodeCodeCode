@@ -15,7 +15,7 @@
 
     <div class="item1">
         <h5 th:each="blog:${blogs}" th:text="'Posted on ' + ${blog.postedDate}">Posted on date</h5>
-        <h1>List of Blogs</h1>
+        <h1 th:text="#{list.of.blogs}">List of Blogs</h1>
 
         <div class="user-link">
             <span th:if="${currentPage > 1}"><a th:href="@{'/get-list/' + ${currentPage - 1}}" class="button"><i class="fas fa-backward"></i></a></span>

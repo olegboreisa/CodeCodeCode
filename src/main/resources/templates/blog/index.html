@@ -7,30 +7,29 @@
     <link rel="stylesheet" type="text/css" media="all"
           th:href="@{/css/blog/index.css}"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Nerko+One&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f1b017441a.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container">
 
         <div class="item1">
-            <h1>Welcome</h1>      
+            <h1 th:text="#{greet}">Welcome</h1>
         </div>
 
         <div class="item2">
-            <h3>Select the following</h3>      
+            <h3 th:text="#{select}">Select the following</h3>
         </div>
 
         <div class="item-links">
-            <div><a th:href="@{/get-list}" class="button1">Review <i class="fas fa-book-open"></i></a> </div>
-            <div><a href="#" class="button1">Write <i class="fas fa-pencil-alt"></i></a>  </div>
+            <span><a th:href="@{/get-list}" th:text="#{review}"><i class="fas fa-book-open"></i></a></span>
+            <span><a href="#">Write<i class="fas fa-pencil-alt"></i></a></span>
         </div>
 
+
         <div class="item-lang">
-            <div>
-                <a href="#EN" class="button2">EN <i class="fas fa-globe-americas"></i></a>
-                <a href="#LT" class="button2">LT <i class="fas fa-globe-europe"></i></a>
-            </div>
+            <button type="button" th:text="#{lang.eng}" onclick="window.location.href='http://localhost:8080/?lang=en'"></button>
+            <button type="button" th:text="#{lang.lt}" onclick="window.location.href='http://localhost:8080/?lang=lt'"></button>
         </div>
 
     </div>
