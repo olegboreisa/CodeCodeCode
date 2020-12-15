@@ -14,12 +14,12 @@
 <div class="container">
 
     <div class="item1">
-        <h5 th:each="blog:${blogs}" th:text="'Posted on ' + ${blog.postedDate}">Posted on date</h5>
+        <h5 th:each="blog:${blogs}" th:text="#{blog.posted} + ' ' + ${blog.postedDate}">Posted on date</h5>
         <h1 th:text="#{list.of.blogs}">List of Blogs</h1>
 
         <div class="user-link">
             <span th:if="${currentPage > 1}"><a th:href="@{'/get-list/' + ${currentPage - 1}}" class="button"><i class="fas fa-backward"></i></a></span>
-            <span><a th:href="@{/main}" class="button">Back to Menu</a></span>
+            <span><a th:href="@{/main}" class="button" th:text="#{back.to.menu}">Back to Menu</a></span>
             <span th:if="${currentPage < totalPages}"><a th:href="@{'/get-list/' + ${currentPage + 1}}" class="button"><i class="fas fa-forward"></i></a></span>
         </div>
     </div>
@@ -35,14 +35,14 @@
     </div>
 
     <div class="extra-link" th:each="blog:${blogs}">
-        <span><a href="#Like" class="button"><i class="far fa-heart"></i>Like</a></span>
-        <span><a href="#Comment" class="button"><i class="fas fa-comment-medical"></i>Comment</a></span>
-        <span><a th:href="@{/edit/{id}(id=${blog.id})}" class="button">Edit<i class="fas fa-pencil-alt"></i></a></span>
-        <span><a th:href="@{/delete/{id}(id=${blog.id})}" class="button">Delete<i class="fas fa-times"></i></a></span>
+        <span><a th:href="@{/#}" class="button"><span th:text="#{like.button}"></span><i class="far fa-heart"></i></a></span>
+        <span><a th:href="@{/#}" class="button"><span th:text="#{comment.button}"></span><i class="fas fa-comment-medical"></i></a></span>
+        <span><a th:href="@{/edit/{id}(id=${blog.id})}" class="button"><span th:text="#{edit.button}"></span><i class="fas fa-pencil-alt"></i></a></span>
+        <span ><a th:href="@{/delete/{id}(id=${blog.id})}" class="button"><span th:text="#{delete.button}"></span><i class="fas fa-times"></i></a></span>
     </div>
 
     <div class="fixed-text">
-        <h4>Comment Section</h4>
+        <h4 th:text="#{comment.section}">Comment Section</h4>
     </div>
 
     <div class="comments">

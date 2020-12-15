@@ -20,6 +20,9 @@ public class Internationalization implements WebMvcConfigurer {
     /**
      * In order for our application to be able to determine which locale is currently being used, we need to add a LocaleResolver bean
      */
+    /**
+     * As a nifty bonus, switch to one locale, close and reopen the browser, and navigate to the root URL again; since we used  SessionLocaleResolver as our LocaleResolver implementation, you’ll see that the chosen locale choice has been retained
+     */
 
     @Bean
     public LocaleResolver localeResolver() {
@@ -66,4 +69,5 @@ public class Internationalization implements WebMvcConfigurer {
         resourceBundleMessageSource.setDefaultEncoding(StandardCharsets.UTF_8.displayName());
         return resourceBundleMessageSource;
     }
+
 }

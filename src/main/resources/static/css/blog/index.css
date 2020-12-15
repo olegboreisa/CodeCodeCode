@@ -22,27 +22,40 @@ body {
     align-items: center;
     justify-content: center; 
     /* ------ */
-    width:50%;
-    height:90%;
+    min-width: 300px;
+    min-height: 300px;
+    width:30%;
+    height:50%;
 }
 
-.button1 {
-    text-decoration: none;
-    color: blueviolet;
-    font-size: 24px;
+.item1{
+    font-size: 3em;
+}
+.item2{
+    font-size: 2em;
 }
 
-div h1 {
-    font-size: 120px;
+.item-lang, .item-links, .text {
+    display: flex;
 }
 
-div h3 {
-    font-size: 50px;
+.text {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.item-lang span, .item-links span {
-    text-decoration: none;
-    color: black;
+.item-links1 span img {
+    width: 50px;
+    height: 30px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.item-links2 {
+    margin-top: 5%;
+}
+.item-links2 span  {
+    margin-left: 10px;
 }
 
 

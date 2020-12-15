@@ -39,9 +39,30 @@ body {
     justify-content: center;
 }
 
-.button {
+.button{
     text-decoration: none;
     padding: 2px 6px 2px 6px;
+    color: saddlebrown;
+}
+
+
+:root {
+    --mainColor: #ff9800;
+}
+
+.button:hover {
+    color: white;
+    background:
+            linear-gradient(
+                    to right,
+                    var(--mainColor) 0%,
+                    var(--mainColor) 1px,
+                    transparent
+            );
+}
+
+.extra-link i {
+    margin-left: 3px;
 }
 
 /* Blog Header */
