@@ -106,4 +106,26 @@ public class BlogC {
         }
         return null;
     }
+
+    /** Edit Blog */
+    @RequestMapping(path = "/edit/{id}", method = RequestMethod.GET)
+    public String editBlog (@PathVariable (name = "id") Long id, Model model) {
+        Blog blog = blogRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user id: " + id));
+        model.addAttribute("blogToEdit", blog);
+        return "blog/blog-edit";
+    }
+
+    @RequestMapping(path = "/edit", method = RequestMethod.POST)
+    public String editedBlog(@Valid @ModelAttribute (name = "blogToEdit") Blog blog, BindingResult bindingResult, @Param("action") String action) {
+        if (bindingResult.hasErrors() && action.equals("edit")) {
+            log.info("[NOT ADDED]: {}", blog);
+            return "blog/blog-edit";
+        }
+        if (!bindingResult.hasErrors() && action.equals("edit")) {
+            log.info("[ADDED]: {}", blog);
+            blogRepo.save(blog);
+            return "redirect:/get-list";
+        }
+        return "redirect:/main";
+        }
 }
