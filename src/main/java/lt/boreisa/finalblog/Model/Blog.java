@@ -1,5 +1,6 @@
 package lt.boreisa.finalblog.Model;
 
+import com.sun.istack.Nullable;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
@@ -49,4 +50,8 @@ public class Blog {
 //                    name = "comment_id"
 //            ))
     private List<Comment> comments = new ArrayList<>();
+
+    @Nullable
+    @Column(name = "likes")
+    private Long likes;
 }

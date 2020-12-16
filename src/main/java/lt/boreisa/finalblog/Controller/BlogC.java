@@ -118,14 +118,23 @@ public class BlogC {
     @RequestMapping(path = "/edit", method = RequestMethod.POST)
     public String editedBlog(@Valid @ModelAttribute (name = "blogToEdit") Blog blog, BindingResult bindingResult, @Param("action") String action) {
         if (bindingResult.hasErrors() && action.equals("edit")) {
-            log.info("[NOT ADDED]: {}", blog);
+            log.info("[NOT EDITE]: {}", blog);
             return "blog/blog-edit";
         }
         if (!bindingResult.hasErrors() && action.equals("edit")) {
-            log.info("[ADDED]: {}", blog);
+            log.info("[EDITED]: {}", blog);
             blogRepo.save(blog);
             return "redirect:/get-list";
         }
         return "redirect:/main";
         }
+
+
+    @RequestMapping(path = "/like/{id}", method = RequestMethod.GET)
+    public String likeBlog (@PathVariable ("id") Long id) {
+        Blog blog = blogRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user id"));
+        blog.setLikes(blog.getLikes() + 1);
+        blogRepo.save(blog);
+        return "redirect:/get-list/" + id;
+    }
 }

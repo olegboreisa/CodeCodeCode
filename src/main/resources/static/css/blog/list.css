@@ -140,3 +140,7 @@ body {
 .comments {
     flex-basis: 25%;
 }
+
+.like {
+    align-self: flex-start;
+}

@@ -37,6 +37,8 @@
                     <textarea th:field="*{mainText}"></textarea>
                 </div>
 
+                <input th:field="*{likes}" hidden>
+
                 <button type="submit" th:name="action" th:value ="edit" th:text="#{submit.button}">Submit</button>
                 <button type="submit" th:name="action" th:value="return" th:text="#{return.button}">Return</button>
 
