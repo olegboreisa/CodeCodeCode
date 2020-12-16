@@ -4,6 +4,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -68,6 +70,20 @@ public class Internationalization implements WebMvcConfigurer {
         resourceBundleMessageSource.setBasenames("i18n/messages");
         resourceBundleMessageSource.setDefaultEncoding(StandardCharsets.UTF_8.displayName());
         return resourceBundleMessageSource;
+    }
+
+    /**
+     * Validator messages reader
+     *          |
+     *          V
+     */
+
+    @Bean
+    @Override
+    public Validator getValidator() {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        bean.setValidationMessageSource(messageSource());
+        return bean;
     }
 
 }

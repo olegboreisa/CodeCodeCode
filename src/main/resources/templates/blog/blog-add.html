@@ -17,26 +17,26 @@
     <div class="container">
 
         <div class="item1">
-            <h1>Complete the following sections</h1>
+            <h1 th:text="#{complete.section}">Complete the following sections</h1>
         </div>
 
         <div class="item2">
-            <form action="#" method="POST" class="form-container">
+            <form th:action="@{/add-new-blog}" method="POST" class="form-container" th:object="${newBlog}">
                 <div class="header">
-                    <h1>Write the header</h1>
-                    <textarea></textarea>
+                    <h1 th:text="#{write.header}">Write the header</h1>
+                    <textarea th:field="*{header}"></textarea>
+                    <span th:if="${#fields.hasErrors('header')}" th:errors="*{header}" class="hasError"></span>
                 </div>
     
                 <div class="text">
-                    <h1>Write your thoughts</h1>
-                    <textarea></textarea>
+                    <h1 th:text="#{write.text}">Write your thoughts</h1>
+                    <textarea th:field="*{mainText}"></textarea>
+                    <span th:if="${#fields.hasErrors('mainText')}" th:errors="*{mainText}" class="hasError"></span>
                 </div>
-            </form>
-        </div>
 
-        <div class="link-bar">
-            <div><a href="#" class="button">Submit</a> </div>
-            <div><a href="#" class="button">Back to Menu</a> </div>
+                <button type="submit" th:name="action" th:value ="submit" th:text="#{submit.button}">Submit</button>
+                <button type="submit" th:name="action" th:value="return" th:text="#{return.button}">Return</button>
+            </form>
         </div>
 
     </div>

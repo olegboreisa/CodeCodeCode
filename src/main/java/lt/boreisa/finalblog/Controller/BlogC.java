@@ -11,10 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -42,7 +45,7 @@ public class BlogC {
         return "blog/index";
     }
 
-    /** Delete a record */
+    /** Delete a blog */
     @RequestMapping(path = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBlog (@PathVariable Long id) {
         blogRepo.deleteById(id);
@@ -80,5 +83,27 @@ public class BlogC {
         model.addAttribute("comList", pageCom);
 
         return "blog/blog-list";
+    }
+
+    /** Add a blog
+     * Get Empty Blog Model
+     * */
+    @RequestMapping(path = "/add-blog", method = RequestMethod.GET)
+    public String addBlog (@ModelAttribute (name = "newBlog") Blog blog) {
+        return "blog/blog-add";
+    }
+
+    @RequestMapping(path = "/add-new-blog", method = RequestMethod.POST)
+    public String addedBlog(@Valid @ModelAttribute (name = "newBlog") Blog blog, BindingResult bindingResult, @Param("action") String action) {
+        if (bindingResult.hasErrors() && action.equals("submit")) {
+            log.info("[NOT ADDED]: {}", blog);
+            return "blog/blog-add";
+        } else if (!bindingResult.hasErrors() && action.equals("submit")) {
+            blogRepo.save(blog);
+            return "redirect:/get-list";
+        } else if (bindingResult.hasErrors() && action.equals("return")) {
+            return "redirect:/main";
+        }
+        return null;
     }
 }
