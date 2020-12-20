@@ -40,7 +40,7 @@ public class BlogC {
     }
 
     /** Main Page */
-    @RequestMapping(path = {"", "/", "main"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"", "/", "/main"}, method = RequestMethod.GET)
     public String getMain () {
         return "blog/index";
     }
