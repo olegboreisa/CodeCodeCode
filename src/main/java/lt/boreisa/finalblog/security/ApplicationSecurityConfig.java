@@ -1,13 +1,16 @@
 package lt.boreisa.finalblog.security;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
+
 //[HERE WE CONFIG EVERYTHING RELATED WITH SPRING SECURITY]
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -15,7 +18,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/h2/**", "/register/**").permitAll()
+                    .antMatchers("/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()

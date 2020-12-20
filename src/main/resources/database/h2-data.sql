@@ -29,3 +29,7 @@ INSERT INTO COMMENT (id, posted_date, name, second_name, text, blog_id) VALUES
        (2, '2002-06-11', 'Tautvydas', 'Strolia', 'Hate!', 1),
        (3, '2020-12-12', 'Donatas', 'Viazevicius', 'I would like to hear more information!', 1),
        (4, '1614-01-01', 'Edvin', 'Kupsas', 'I did not read and I still rated it as a disinformation 5G RULES!', 2);
+
+INSERT INTO ROLE (id, role) VALUES
+        (1, 'Admin'),
+        (2, 'User');

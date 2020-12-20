@@ -14,16 +14,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column(name = "nickname")
     private String nickName;
 
     @Column(name = "password")
     private String password;
 
+    @Column(name = "country")
     private String country;
 
+    @Column(name = "phone_number")
     private String phoneNum;
 
     @ManyToMany
+    @Column(name = "role")
     private Set<Role> role;
 }

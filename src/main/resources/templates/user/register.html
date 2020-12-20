@@ -11,33 +11,41 @@
 <div class="login-box">
     <h2>Fill in the form</h2>
     <br>
-    <form th:action="@{/registered}" method = "POST">
+    <form th:action="@{/registered}" method="POST" th:object="${user}">
         <div class="user-box">
             <label>Username</label>
-            <input type="text" name="username">
+            <input type="text" name="username" th:field="*{nickName}">
         </div>
         <div class="user-box">
             <label>Password</label>
-            <input type="password" name="password">
+            <input type="password" name="password" th:field="*{password}">
         </div>
         <div class="user-box">
             <label>Country</label>
-            <select required>
-                <option name="non"></option>
-                <option name="lt-lt">Lietuva</option>
-                <option name="us-us">United States</option>
-                <option name="ru-ru">Россия</option>
+            <select th:field="*{country}">
+                <option th:value="Lithuania">Lietuva</option>
+                <option th:value="US">United States</option>
+                <option th:value="Russia">Россия</option>
             </select>
         </div>
         <div class="user-box">
             <label>Phone Number</label>
-            <input type="text" name="phoneNum">
+            <input type="text" name="phoneNum" th:field="*{phoneNum}">
         </div>
-        <br>
-        <button type="submit">Register</button>
-        <br>
-        <button type="submit" onclick="window.location.href='http://localhost:8080/login'">Return</button>
+        <div class="role-box">
+            <label>
+                Select Roles:
+                <input type="checkbox" name="roles"
+                       th:each="role : ${roles}"
+                       th:text="${role.roleName}"
+                       th:value="${role.id}"
+                       th:field="*{role}"
+                       />
+            </label>
+        </div>
+        <button type="submit">Register User</button>
     </form>
+    <span><a th:href="@{/log}">Return</a></span>
 </div>
 </body>
 
