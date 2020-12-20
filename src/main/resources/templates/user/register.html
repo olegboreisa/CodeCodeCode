@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/blog/signup.css}"/>
+</head>
+<body>
+<div class="login-box">
+    <h2>Fill in the form</h2>
+    <br>
+    <form th:action="@{/registered}" method = "POST">
+        <div class="user-box">
+            <label>Username</label>
+            <input type="text" name="username">
+        </div>
+        <div class="user-box">
+            <label>Password</label>
+            <input type="password" name="password">
+        </div>
+        <div class="user-box">
+            <label>Country</label>
+            <select required>
+                <option name="non"></option>
+                <option name="lt-lt">Lietuva</option>
+                <option name="us-us">United States</option>
+                <option name="ru-ru">Россия</option>
+            </select>
+        </div>
+        <div class="user-box">
+            <label>Phone Number</label>
+            <input type="text" name="phoneNum">
+        </div>
+        <br>
+        <button type="submit">Register</button>
+        <br>
+        <button type="submit" onclick="window.location.href='http://localhost:8080/login'">Return</button>
+    </form>
+</div>
+</body>
+
+</html>
