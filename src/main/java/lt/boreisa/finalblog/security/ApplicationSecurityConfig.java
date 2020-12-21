@@ -38,17 +38,17 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/h2/**", "/public/**").permitAll()
-                .antMatchers("/private/**").hasAnyRole("Admin")
+                .antMatchers("/private/**").authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                     .permitAll()
-                    .loginPage("/login") //[GET METHOD - TO GET LOGIN PAGE]
-                    .loginProcessingUrl("/login")
+                    .loginPage("/public/login") //[GET METHOD - TO GET LOGIN PAGE]
+                    .loginProcessingUrl("/public/login")
                     .usernameParameter("username")
                     .passwordParameter("password")
-                    .defaultSuccessUrl("/private/main")
-                    .failureForwardUrl("/bbb")
+                    .defaultSuccessUrl("/private/main", true)
+                    .failureForwardUrl("/public/login-error")
                 .and()
                     .logout();
 

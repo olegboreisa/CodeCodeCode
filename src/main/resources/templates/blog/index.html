@@ -12,10 +12,10 @@
 
     <div class="container">
 
-        <div class="item-links1">
-            <span> <img src="/pics/blog/us.png" onclick="window.location.href='http://localhost:8080/?lang=en'"></span>
-            <span> <img src="/pics/blog/lt.png" onclick="window.location.href='http://localhost:8080/?lang=lt'"></span>
-        </div>
+<!--        <div class="item-links1">-->
+<!--            <span> <img src="/pics/blog/us.png" onclick="window.location.href='http://localhost:8080/?lang=en'"></span>-->
+<!--            <span> <img src="/pics/blog/lt.png" onclick="window.location.href='http://localhost:8080/?lang=lt'"></span>-->
+<!--        </div>-->
 
         <div class="text">
             <h1 class="item1" th:text="#{greet}">Welcome</h1>
@@ -23,8 +23,8 @@
             <p class="item2" th:text="#{select}">Select the following</p>
 
             <div class="item-links2">
-                <span><a th:href="@{/get-list}"><i class="fas fa-book fa-5x"></i></a></span>
-                <span><a th:href="@{/add-blog}"><i class="fas fa-pencil-alt fa-5x"></i></a></span>
+                <span><a th:href="@{/private/get-list}"><i class="fas fa-book fa-5x"></i></a></span>
+                <span><a th:href="@{/private/add-blog}"><i class="fas fa-pencil-alt fa-5x"></i></a></span>
             </div>
         </div>
     </div>

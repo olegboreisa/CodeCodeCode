@@ -2,6 +2,7 @@ package lt.boreisa.finalblog.Model;
 
 import lombok.Data;
 import lt.boreisa.finalblog.Validation.PasswordMatches;
+import lt.boreisa.finalblog.Validation.Phone;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -33,23 +35,25 @@ public class User implements UserDetails {
     @Column(name = "username")
     private String username;
 
-    @NotNull
-    @NotEmpty
+    @Length(min = 3, message = "{password.error}")
     @Column(name = "password")
     private String password;
 
     @Column(name = "matching_password")
+    @NotEmpty (message = "{match.error}")
     private String matchPassword;
 
+    @NotBlank(message = "{country.error}")
     @Column(name = "country")
     private String country;
 
+    @Phone
     @Column(name = "phone_number")
     private String phoneNum;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Column(name = "role")
-    @NotNull
+    @NotEmpty(message = "{role.error}")
     private Set<Role> role = new HashSet<>();
 
     @Override

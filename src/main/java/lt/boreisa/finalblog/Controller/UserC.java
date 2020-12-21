@@ -11,12 +11,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/public")
+//@RequestMapping("/public")
 public class UserC {
 
     private final UserRepo userRepo;
@@ -26,13 +27,20 @@ public class UserC {
         this.userRepo = userRepo;
         this.roleRepo = roleRepo;
     }
-
-    @RequestMapping(path = "/log", method = RequestMethod.GET)
-    public String getLog () {
+    // [SIGN UP]
+    @RequestMapping(path = "/public/login")
+    public String login() {
         return "user/signup";
     }
 
-    @RequestMapping(path = "/register", method = RequestMethod.GET)
+    @RequestMapping(path = "/public/login-error")
+    public String loginError (Model model) {
+        model.addAttribute("loginError", true);
+        return "user/signup";
+    }
+
+    // [REGISTER]
+    @RequestMapping(path = "/public/register", method = RequestMethod.GET)
     public String addUser (@ModelAttribute (name = "user") User user, Model model) {
         //[FIND ROLES]
         List<Role> getRoles = roleRepo.findAll();
@@ -40,7 +48,7 @@ public class UserC {
         return "user/register";
     }
 
-    @RequestMapping(path = "/registered", method = RequestMethod.POST)
+    @RequestMapping(path = "/public/registered", method = RequestMethod.POST)
     public String addUsers (@Valid @ModelAttribute ("user") User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             List<Role> getRoles = roleRepo.findAll();
@@ -51,6 +59,6 @@ public class UserC {
 //        user.setPassword(encoder.encode(user.getPassword()));
 //        user.setMatchPassword(encoder.encode(user.getMatchPassword()));
         userRepo.save(user);
-        return "redirect:/public/log";
+        return "redirect:/public/login";
     }
 }

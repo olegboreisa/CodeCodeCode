@@ -35,4 +35,4 @@ INSERT INTO ROLE (id, role) VALUES
         (2, 'User');
 
 INSERT INTO USER (id, username, password) VALUES
-        (1, 'tadas', '123');
+        (1, 'admin', '123');

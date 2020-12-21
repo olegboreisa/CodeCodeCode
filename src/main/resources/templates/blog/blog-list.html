@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,9 +18,9 @@
         <h1 th:text="#{list.of.blogs}">List of Blogs</h1>
 
         <div class="user-link">
-            <span th:if="${currentPage > 1}"><a th:href="@{'/get-list/' + ${currentPage - 1}}" class="button"><i class="fas fa-backward"></i></a></span>
-            <span><a th:href="@{/main}" class="button" th:text="#{back.to.menu}">Back to Menu</a></span>
-            <span th:if="${currentPage < totalPages}"><a th:href="@{'/get-list/' + ${currentPage + 1}}" class="button"><i class="fas fa-forward"></i></a></span>
+            <span th:if="${currentPage > 1}"><a th:href="@{'/private/get-list/' + ${currentPage - 1}}" class="button"><i class="fas fa-backward"></i></a></span>
+            <span><a th:href="@{/private/main}" class="button" th:text="#{back.to.menu}">Back to Menu</a></span>
+            <span th:if="${currentPage < totalPages}"><a th:href="@{'/private/get-list/' + ${currentPage + 1}}" class="button"><i class="fas fa-forward"></i></a></span>
         </div>
     </div>
 
@@ -39,8 +39,8 @@
     <div class="extra-link" th:each="blog:${blogs}" >
         <span><a th:href="@{/like/{id}(id=${blog.id})}" class="button"><span th:text="#{like.button}"></span><i class="far fa-heart"></i></a></span>
         <span><a th:href="@{/#}" class="button"><span th:text="#{comment.button}"></span><i class="fas fa-comment-medical"></i></a></span>
-        <span><a th:href="@{/edit/{id}(id=${blog.id})}" class="button"><span th:text="#{edit.button}"></span><i class="fas fa-pencil-alt"></i></a></span>
-        <span ><a th:href="@{/delete/{id}(id=${blog.id})}" class="button"><span th:text="#{delete.button}"></span><i class="fas fa-times"></i></a></span>
+        <span><a sec:authorize="hasRole('ROLE_Admin')" th:href="@{/edit/{id}(id=${blog.id})}" class="button"><span th:text="#{edit.button}"></span><i class="fas fa-pencil-alt"></i></a></span>
+        <span ><a sec:authorize="hasRole('ROLE_Admin')" th:href="@{/delete/{id}(id=${blog.id})}" class="button"><span th:text="#{delete.button}"></span><i class="fas fa-times"></i></a></span>
     </div>
 
     <div class="fixed-text">

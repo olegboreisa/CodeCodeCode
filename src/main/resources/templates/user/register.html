@@ -9,59 +9,57 @@
 </head>
 <body>
 <div class="login-box">
-    <h2>Fill in the form</h2>
+    <h2 th:text="#{reg.fill}">Fill in the form</h2>
     <br>
     <form th:action="@{/public/registered}" method="POST" th:object="${user}">
 
         <div class="user-box">
-            <label>Username</label>
+            <label th:text="#{reg.username}">Username</label>
             <input type="text" name="username" th:field="*{username}">
             <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="hasError"></span>
         </div>
 
         <div class="user-box">
-            <label>Password</label>
+            <label th:text="#{reg.password}">Password</label>
             <input type="password" name="password" th:field="*{password}">
             <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="hasError"></span>
         </div>
 
         <div class="user-box">
-            <label>Match Password</label>
+            <label th:text="#{reg.repeatPass}">Match Password</label>
             <input type="password" name="match" th:field="*{matchPassword}">
             <span th:if="${#fields.hasErrors('matchPassword')}" th:errors="*{matchPassword}" class="hasError"></span>
         </div>
 
         <div class="user-box">
-            <label>Country</label>
+            <label th:text="#{reg.country}">Country</label>
             <select th:field="*{country}">
-                <option value="Select">Select..</option>
+                <option value=""></option>
                 <option th:value="Lithuania">Lietuva</option>
                 <option th:value="US">United States</option>
                 <option th:value="Russia">Россия</option>
             </select>
+            <span th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="hasError"></span>
         </div>
 
         <div class="user-box">
-            <label>Phone Number</label>
+            <label th:text="#{reg.phone}">Phone Number</label>
             <input type="text" name="phoneNum" th:field="*{phoneNum}">
+            <span th:if="${#fields.hasErrors('phoneNum')}" th:errors="*{phoneNum}" class="hasError"></span>
         </div>
 
         <div class="role-box">
-            <label>
-                Select Roles:
-                <input type="checkbox" name="roles"
+                <input type="checkbox" name="roles" id="rule"
                        th:each="role : ${roles}"
                        th:text="${role.roleName}"
                        th:value="${role.id}"
                        th:field="*{role}"
                        />
-            </label>
         </div>
-
-        <button type="submit">Register User</button>
+        <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="hasError"></span>
+        <button type="submit" th:text="#{reg.reg}">Register</button>
     </form>
-    <span><a th:href="@{/log}">Return</a></span>
+    <span><a th:href="@{/log}" th:text="#{reg.return}">Return</a></span>
 </div>
 </body>
-
 </html>
