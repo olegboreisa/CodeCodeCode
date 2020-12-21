@@ -1,10 +1,8 @@
 package lt.boreisa.finalblog.Model;
 
 import lombok.Data;
-import lombok.NonNull;
 import lt.boreisa.finalblog.Validation.PasswordMatches;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Fetch;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,6 +13,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Data
@@ -48,14 +47,23 @@ public class User implements UserDetails {
     @Column(name = "phone_number")
     private String phoneNum;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @Column(name = "role")
-    private Set<Role> role;
+    @NotNull
+    private Set<Role> role = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+//        List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+//        for (Role role : role) {
+//            grantedAuthorities.add(new SimpleGrantedAuthority(role.getAuthority()));
+//        }
+//        return grantedAuthorities;
+        return role.stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRoleName()))
+                .collect(Collectors.toSet());
     }
+
 
     @Override
     public boolean isAccountNonExpired() {
