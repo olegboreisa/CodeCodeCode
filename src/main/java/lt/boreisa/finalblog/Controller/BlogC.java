@@ -23,6 +23,7 @@ import java.util.List;
 
 @Controller
 @Slf4j
+@RequestMapping("/private")
 public class BlogC {
 
     // [GETTING METHODS TO EXTRACT DATA FROM DATABASE]

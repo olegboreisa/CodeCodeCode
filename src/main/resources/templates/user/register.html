@@ -11,12 +11,12 @@
 <div class="login-box">
     <h2>Fill in the form</h2>
     <br>
-    <form th:action="@{/registered}" method="POST" th:object="${user}">
+    <form th:action="@{/public/registered}" method="POST" th:object="${user}">
 
         <div class="user-box">
             <label>Username</label>
-            <input type="text" name="username" th:field="*{nickName}">
-            <span th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}" class="hasError"></span>
+            <input type="text" name="username" th:field="*{username}">
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="hasError"></span>
         </div>
 
         <div class="user-box">

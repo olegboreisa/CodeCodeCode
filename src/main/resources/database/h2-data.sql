@@ -33,3 +33,6 @@ INSERT INTO COMMENT (id, posted_date, name, second_name, text, blog_id) VALUES
 INSERT INTO ROLE (id, role) VALUES
         (1, 'Admin'),
         (2, 'User');
+
+INSERT INTO USER (id, username, password) VALUES
+        (1, 'tadas', '123');

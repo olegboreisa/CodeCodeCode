@@ -4,6 +4,7 @@ import lt.boreisa.finalblog.Model.Role;
 import lt.boreisa.finalblog.Model.User;
 import lt.boreisa.finalblog.Repository.RoleRepo;
 import lt.boreisa.finalblog.Repository.UserRepo;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping("/public")
 public class UserC {
 
     private final UserRepo userRepo;
@@ -45,7 +47,10 @@ public class UserC {
             model.addAttribute("roles", getRoles);
             return "user/register";
         }
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+//        user.setPassword(encoder.encode(user.getPassword()));
+//        user.setMatchPassword(encoder.encode(user.getMatchPassword()));
         userRepo.save(user);
-        return "redirect:/log";
+        return "redirect:/public/log";
     }
 }
