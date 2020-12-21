@@ -39,8 +39,10 @@ public class UserC {
     }
 
     @RequestMapping(path = "/registered", method = RequestMethod.POST)
-    public String addUsers (@Valid @ModelAttribute ("user") User user, BindingResult bindingResult) {
+    public String addUsers (@Valid @ModelAttribute ("user") User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            List<Role> getRoles = roleRepo.findAll();
+            model.addAttribute("roles", getRoles);
             return "user/register";
         }
         userRepo.save(user);
