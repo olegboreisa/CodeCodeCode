@@ -1,4 +1,4 @@
-package lt.boreisa.finalblog.Model;
+package lt.boreisa.finalblog.model;
 
 import lombok.Data;
 

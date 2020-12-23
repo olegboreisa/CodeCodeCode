@@ -1,7 +1,7 @@
-package lt.boreisa.finalblog.Service;
+package lt.boreisa.finalblog.service;
 
-import lt.boreisa.finalblog.Model.Blog;
-import lt.boreisa.finalblog.Repository.BlogRepo;
+import lt.boreisa.finalblog.model.Blog;
+import lt.boreisa.finalblog.repository.BlogRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

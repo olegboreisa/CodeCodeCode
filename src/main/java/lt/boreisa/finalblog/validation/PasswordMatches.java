@@ -1,10 +1,8 @@
-package lt.boreisa.finalblog.Validation;
+package lt.boreisa.finalblog.validation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
-
-import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Documented
 @Constraint(validatedBy = PasswordMatchesValidator.class)

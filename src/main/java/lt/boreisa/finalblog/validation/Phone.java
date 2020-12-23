@@ -1,4 +1,4 @@
-package lt.boreisa.finalblog.Validation;
+package lt.boreisa.finalblog.validation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

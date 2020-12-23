@@ -1,4 +1,4 @@
-package lt.boreisa.finalblog.Config;
+package lt.boreisa.finalblog.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

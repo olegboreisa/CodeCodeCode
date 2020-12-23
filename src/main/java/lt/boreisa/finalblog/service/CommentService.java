@@ -1,6 +1,6 @@
-package lt.boreisa.finalblog.Service;
+package lt.boreisa.finalblog.service;
 
-import lt.boreisa.finalblog.Repository.CommentRepo;
+import lt.boreisa.finalblog.repository.CommentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

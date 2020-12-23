@@ -1,8 +1,7 @@
-package lt.boreisa.finalblog.Validation;
+package lt.boreisa.finalblog.validation;
 
-import lt.boreisa.finalblog.Model.User;
+import lt.boreisa.finalblog.model.User;
 
-import javax.validation.Constraint;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 

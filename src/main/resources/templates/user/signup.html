@@ -11,11 +11,6 @@
 <body>
 <div class="login-box">
 
-    <div class="item-links1">
-        <button onclick="window.location.href='http://localhost:8080/public/login?lang=en'">EN</button>
-        <button onclick="window.location.href='http://localhost:8080/public/login?lang=lt'">LT</button>
-    </div>
-
     <h2 th:text="#{sign.up}">Sign Up</h2>
 
     <form th:action="@{/public/login}" method = "POST">

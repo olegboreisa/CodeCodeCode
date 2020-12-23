@@ -1,8 +1,7 @@
-package lt.boreisa.finalblog.Service;
+package lt.boreisa.finalblog.service;
 
-import lt.boreisa.finalblog.Model.User;
-import lt.boreisa.finalblog.Repository.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import lt.boreisa.finalblog.model.User;
+import lt.boreisa.finalblog.repository.UserRepo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -1,29 +1,27 @@
-package lt.boreisa.finalblog.Controller;
+package lt.boreisa.finalblog.controller;
 
-import lt.boreisa.finalblog.Model.Role;
-import lt.boreisa.finalblog.Model.User;
-import lt.boreisa.finalblog.Repository.RoleRepo;
-import lt.boreisa.finalblog.Repository.UserRepo;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import lt.boreisa.finalblog.model.Role;
+import lt.boreisa.finalblog.model.User;
+import lt.boreisa.finalblog.repository.RoleRepo;
+import lt.boreisa.finalblog.repository.UserRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 //@RequestMapping("/public")
-public class UserC {
+public class UserController {
 
     private final UserRepo userRepo;
     private final RoleRepo roleRepo;
 
-    public UserC(UserRepo userRepo, RoleRepo roleRepo) {
+    public UserController(UserRepo userRepo, RoleRepo roleRepo) {
         this.userRepo = userRepo;
         this.roleRepo = roleRepo;
     }

@@ -1,8 +1,7 @@
-package lt.boreisa.finalblog.Repository;
+package lt.boreisa.finalblog.repository;
 
-import lt.boreisa.finalblog.Model.Comment;
+import lt.boreisa.finalblog.model.Comment;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,9 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-import static org.hibernate.hql.internal.antlr.HqlTokenTypes.FROM;
-import static org.hibernate.loader.Loader.SELECT;
 
 @Repository
 public interface CommentRepo extends JpaRepository <Comment, Long> {

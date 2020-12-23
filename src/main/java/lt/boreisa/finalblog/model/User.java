@@ -1,8 +1,8 @@
-package lt.boreisa.finalblog.Model;
+package lt.boreisa.finalblog.model;
 
 import lombok.Data;
-import lt.boreisa.finalblog.Validation.PasswordMatches;
-import lt.boreisa.finalblog.Validation.Phone;
+import lt.boreisa.finalblog.validation.PasswordMatches;
+import lt.boreisa.finalblog.validation.Phone;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
@@ -38,8 +38,8 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "matching_password")
     @NotEmpty (message = "{match.error}")
+    @Transient
     private String matchPassword;
 
     @NotBlank(message = "{country.error}")
@@ -51,9 +51,12 @@ public class User implements UserDetails {
     private String phoneNum;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @Column(name = "role")
     @NotEmpty(message = "{role.error}")
     private Set<Role> role = new HashSet<>();
+
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "user", targetEntity = Blog.class)
+    //Blog.class is HANDLING MAPPING
+    private Set<Blog> blogs = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -66,7 +69,6 @@ public class User implements UserDetails {
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRoleName()))
                 .collect(Collectors.toSet());
     }
-
 
     @Override
     public boolean isAccountNonExpired() {

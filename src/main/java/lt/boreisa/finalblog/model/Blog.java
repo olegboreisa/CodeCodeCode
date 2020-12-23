@@ -1,20 +1,16 @@
-package lt.boreisa.finalblog.Model;
+package lt.boreisa.finalblog.model;
 
+import com.sun.istack.NotNull;
 import com.sun.istack.Nullable;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -26,6 +22,10 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @NotNull
+    @ManyToOne
+    private User user;
 
     @Column(name = "posted_date")
     @CreationTimestamp
@@ -41,7 +41,8 @@ public class Blog {
     private String mainText;
 
     @ToString.Exclude
-    @OneToMany (cascade = CascadeType.ALL, mappedBy = "blog", targetEntity = Comment.class) // [COMMENT IS HANDLING MAPPING]
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "blog", targetEntity = Comment.class)
+    // [COMMENT IS HANDLING MAPPING]
 //    @JoinTable(
 //            name = "blog_com",
 //            joinColumns = @JoinColumn(

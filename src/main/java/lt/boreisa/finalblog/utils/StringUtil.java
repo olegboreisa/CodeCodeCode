@@ -1,4 +1,4 @@
-package lt.boreisa.finalblog.Utils;
+package lt.boreisa.finalblog.utils;
 
 public class StringUtil {
     public static boolean areCharsDigits(String value) {

@@ -1,12 +1,12 @@
-package lt.boreisa.finalblog.Controller;
+package lt.boreisa.finalblog.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import lt.boreisa.finalblog.Model.Blog;
-import lt.boreisa.finalblog.Model.Comment;
-import lt.boreisa.finalblog.Repository.BlogRepo;
-import lt.boreisa.finalblog.Repository.CommentRepo;
-import lt.boreisa.finalblog.Service.BlogService;
-import lt.boreisa.finalblog.Service.CommentService;
+import lt.boreisa.finalblog.model.Blog;
+import lt.boreisa.finalblog.model.Comment;
+import lt.boreisa.finalblog.repository.BlogRepo;
+import lt.boreisa.finalblog.repository.CommentRepo;
+import lt.boreisa.finalblog.service.BlogService;
+import lt.boreisa.finalblog.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +24,7 @@ import java.util.List;
 @Controller
 @Slf4j
 @RequestMapping("/private")
-public class BlogC {
+public class BlogController {
 
     // [GETTING METHODS TO EXTRACT DATA FROM DATABASE]
     private final BlogRepo blogRepo;
@@ -33,7 +33,7 @@ public class BlogC {
     private final CommentService commentService;
 
     @Autowired
-    public BlogC(BlogRepo blogRepo, CommentRepo commentRepo, BlogService blogService, CommentService commentService) {
+    public BlogController(BlogRepo blogRepo, CommentRepo commentRepo, BlogService blogService, CommentService commentService) {
         this.blogRepo = blogRepo;
         this.commentRepo = commentRepo;
         this.blogService = blogService;

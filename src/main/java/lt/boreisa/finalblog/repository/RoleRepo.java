@@ -1,6 +1,6 @@
-package lt.boreisa.finalblog.Repository;
+package lt.boreisa.finalblog.repository;
 
-import lt.boreisa.finalblog.Model.Role;
+import lt.boreisa.finalblog.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -24,8 +24,12 @@
         </div>
     </div>
 
-
     <div class="text">
+
+        <div class="item-links1">
+            <button onclick="window.location.href='http://localhost:8080/public/login?lang=en'">EN</button>
+            <button onclick="window.location.href='http://localhost:8080/public/login?lang=lt'">LT</button>
+        </div>
 
         <h1 class="item1" sec:authorize="isAnonymous()" th:text="#{greet}">Welcome</h1>
 

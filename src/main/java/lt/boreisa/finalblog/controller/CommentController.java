@@ -1,9 +1,9 @@
-package lt.boreisa.finalblog.Controller;
+package lt.boreisa.finalblog.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import lt.boreisa.finalblog.Model.Comment;
-import lt.boreisa.finalblog.Repository.CommentRepo;
-import lt.boreisa.finalblog.Service.CommentService;
+import lt.boreisa.finalblog.model.Comment;
+import lt.boreisa.finalblog.repository.CommentRepo;
+import lt.boreisa.finalblog.service.CommentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @Slf4j
-public class CommentC {
+public class CommentController {
 
     private final CommentRepo commentRepo;
     private final CommentService commentService;
 
-    public CommentC(CommentRepo commentRepo, CommentService commentService) {
+    public CommentController(CommentRepo commentRepo, CommentService commentService) {
         this.commentRepo = commentRepo;
         this.commentService = commentService;
     }
