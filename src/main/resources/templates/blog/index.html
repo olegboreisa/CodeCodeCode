@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,20 +12,32 @@
 
     <div class="container">
 
-<!--        <div class="item-links1">-->
-<!--            <span> <img src="/pics/blog/us.png" onclick="window.location.href='http://localhost:8080/?lang=en'"></span>-->
-<!--            <span> <img src="/pics/blog/lt.png" onclick="window.location.href='http://localhost:8080/?lang=lt'"></span>-->
-<!--        </div>-->
+        <div class="item-links1">
+            <span> <img src="pics/blog/us.png" onclick="window.location.href='http://localhost:8080/private/main?lang=en'"></span>
+            <span> <img src="pics/blog/lt.png" onclick="window.location.href='http://localhost:8080/private/main?lang=lt'"></span>
+        </div>
 
         <div class="text">
             <h1 class="item1" th:text="#{greet}">Welcome</h1>
+            <p sec:authentication="name">Name</p>
 
-            <p class="item2" th:text="#{select}">Select the following</p>
+            <div class="item-links2" sec:authorize="isAuthenticated()">
+                <p class="item2" th:text="#{select}">Select the following</p>
 
-            <div class="item-links2">
                 <span><a th:href="@{/private/get-list}"><i class="fas fa-book fa-5x"></i></a></span>
                 <span><a th:href="@{/private/add-blog}"><i class="fas fa-pencil-alt fa-5x"></i></a></span>
             </div>
+
+            <div sec:authorize="isAnonymous()">
+                <span class="link"><a th:href="@{/public/login}" th:text="#{sign.up}">Sign Up</a></span>
+                <span class="link"><a th:href="@{/public/register}" th:text="#{sign.register}">Register</a></span>
+            </div>
+
+            <form th:action="@{/logout}" method="post">
+                <button class="btn" type="submit" sec:authorize="isAuthenticated()">Logout</button>
+            </form>
+
+
         </div>
     </div>
 

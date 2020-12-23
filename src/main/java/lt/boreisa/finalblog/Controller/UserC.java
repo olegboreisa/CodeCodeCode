@@ -39,6 +39,12 @@ public class UserC {
         return "user/signup";
     }
 
+//    // [SIGN OUT]
+//    @RequestMapping(path = "/public/logout")
+//    public String logout() {
+//        return "user/signup";
+//    }
+
     // [REGISTER]
     @RequestMapping(path = "/public/register", method = RequestMethod.GET)
     public String addUser (@ModelAttribute (name = "user") User user, Model model) {

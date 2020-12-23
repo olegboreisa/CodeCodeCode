@@ -88,9 +88,10 @@ public class Internationalization implements WebMvcConfigurer {
     }
 
     // [WE DO NOT NEED TO CREATE SEPARATE CLASS FOR SIGN UP CONTROLLER]
-//    @Override
-//    public void addViewControllers(ViewControllerRegistry registry) {
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
 //        registry.addViewController("/login").setViewName("user/signup");
 //        registry.addViewController("/register").setViewName("user/register");
-//    }
+       registry.addViewController("/logout").setViewName("user/signup");
+    }
 }

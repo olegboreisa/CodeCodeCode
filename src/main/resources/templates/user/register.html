@@ -21,13 +21,13 @@
 
         <div class="user-box">
             <label th:text="#{reg.password}">Password</label>
-            <input type="password" name="password" th:field="*{password}">
+            <input type="text" name="password" th:field="*{password}">
             <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="hasError"></span>
         </div>
 
         <div class="user-box">
             <label th:text="#{reg.repeatPass}">Match Password</label>
-            <input type="password" name="match" th:field="*{matchPassword}">
+            <input type="text" name="match" th:field="*{matchPassword}">
             <span th:if="${#fields.hasErrors('matchPassword')}" th:errors="*{matchPassword}" class="hasError"></span>
         </div>
 
