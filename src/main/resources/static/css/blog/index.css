@@ -20,7 +20,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     /* ------ */
     min-width: 300px;
     min-height: 300px;
@@ -28,42 +28,31 @@ body {
     height:60%;
 }
 
-.item1{
-    font-size: 3em;
-}
-.item2{
-    font-size: 2em;
+.header-bar, .text, .footer {
+    width: 95%;
 }
 
-.item-lang, .item-links, .text {
+.header-bar {
+    flex-basis: 5%;
     display: flex;
+    justify-content: space-between;
 }
 
-.text {
-    flex-direction: column;
+.log-info, .reg {
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.item-links1 span img {
-    width: 50px;
-    height: 30px;
-    margin-left: 5px;
-    cursor: pointer;
-}
-.item-links2 {
-    margin-top: 5%;
-}
-.item-links2 span  {
-    margin-left: 10px;
+.log-info p, .reg span {
+    margin-right: 3px;
 }
 
-.link {
-    font: bold 14px Arial;
+button, .link a{
     text-decoration: none;
+    font: bold 14px Arial;
     background-color: #EEEEEE;
     color: #333333;
-    margin-top: 10px;
     padding: 2px 6px 2px 6px;
     border-top: 1px solid #CCCCCC;
     border-right: 1px solid #333333;
@@ -71,4 +60,27 @@ body {
     border-left: 1px solid #CCCCCC;
 }
 
+.text {
+    flex-basis: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid bisque;
+    border-top: 1px solid bisque;
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.item1 {
+    font-size: 4em;
+}
+
+.item2 {
+    font-size: 3em;
+}
+
+.footer {
+    flex-basis: 5%;
+    font-family: 'Shadows Into Light', cursive;
+}
 

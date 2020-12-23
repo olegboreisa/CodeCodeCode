@@ -9,37 +9,41 @@
     <script src="https://kit.fontawesome.com/f1b017441a.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="container">
 
-    <div class="container">
+    <div class="header-bar">
 
-        <div class="item-links1">
-            <span> <img src="pics/blog/us.png" onclick="window.location.href='http://localhost:8080/private/main?lang=en'"></span>
-            <span> <img src="pics/blog/lt.png" onclick="window.location.href='http://localhost:8080/private/main?lang=lt'"></span>
-        </div>
+        <form class="log-info" th:action="@{/logout}" method="post">
+            <p sec:authorize="isAuthenticated()" sec:authentication="name">Username</p>
+            <button type="submit" sec:authorize="isAuthenticated()">Logout</button>
+        </form>
 
-        <div class="text">
-            <h1 class="item1" th:text="#{greet}">Welcome</h1>
-            <p sec:authentication="name">Name</p>
-
-            <div class="item-links2" sec:authorize="isAuthenticated()">
-                <p class="item2" th:text="#{select}">Select the following</p>
-
-                <span><a th:href="@{/private/get-list}"><i class="fas fa-book fa-5x"></i></a></span>
-                <span><a th:href="@{/private/add-blog}"><i class="fas fa-pencil-alt fa-5x"></i></a></span>
-            </div>
-
-            <div sec:authorize="isAnonymous()">
-                <span class="link"><a th:href="@{/public/login}" th:text="#{sign.up}">Sign Up</a></span>
-                <span class="link"><a th:href="@{/public/register}" th:text="#{sign.register}">Register</a></span>
-            </div>
-
-            <form th:action="@{/logout}" method="post">
-                <button class="btn" type="submit" sec:authorize="isAuthenticated()">Logout</button>
-            </form>
-
-
+        <div class="reg" sec:authorize="isAnonymous()">
+            <span class="link"><a th:href="@{/public/login}" th:text="#{sign.up}">Login</a></span>
+            <span class="link"><a th:href="@{/public/register}" th:text="#{sign.register}">Register</a></span>
         </div>
     </div>
+
+
+    <div class="text">
+
+        <h1 class="item1" sec:authorize="isAnonymous()" th:text="#{greet}">Welcome</h1>
+
+        <h1 class="item2" sec:authorize="isAuthenticated()" th:text="#{select}">Select the following:</h1>
+
+        <h4 class="item3" sec:authorize="isAnonymous()" th:text="#{main.sign.warn}">Please sign up!</h4>
+
+        <div class="item-links2" sec:authorize="isAuthenticated()">
+
+            <span><a th:href="@{/private/get-list}"><i class="fas fa-book fa-7x"></i></a></span>
+            <span><a th:href="@{/private/add-blog}"><i class="fas fa-pencil-alt fa-7x"></i></a></span>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Created by <b>Oleg Boreiša</b></p>
+    </div>
+</div>
 
 </body>
 </html>
