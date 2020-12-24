@@ -27,8 +27,8 @@
     <div class="text">
 
         <div class="item-links1">
-            <button onclick="window.location.href='http://localhost:8080/public/login?lang=en'">EN</button>
-            <button onclick="window.location.href='http://localhost:8080/public/login?lang=lt'">LT</button>
+            <button onclick="window.location.href='http://localhost:8080/public/main?lang=en'">EN</button>
+            <button onclick="window.location.href='http://localhost:8080/public/main?lang=lt'">LT</button>
         </div>
 
         <h1 class="item1" sec:authorize="isAnonymous()" th:text="#{greet}">Welcome</h1>
@@ -39,7 +39,7 @@
 
         <div class="item-links2" sec:authorize="isAuthenticated()">
 
-            <span><a th:href="@{/private/get-list}"><i class="fas fa-book fa-7x"></i></a></span>
+            <span><a th:href="@{/private/top-list}"><i class="fas fa-book fa-7x"></i></a></span>
             <span><a th:href="@{/private/add-blog}"><i class="fas fa-pencil-alt fa-7x"></i></a></span>
         </div>
     </div>

@@ -40,11 +40,6 @@ public class BlogController {
         this.commentService = commentService;
     }
 
-    /** Main Page */
-    @RequestMapping(path = "/main", method = RequestMethod.GET)
-    public String getMain () {
-        return "blog/index";
-    }
 
     /** Delete a blog */
     @RequestMapping(path = "/delete/{id}", method = RequestMethod.GET)

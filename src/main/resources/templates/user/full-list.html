@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" media="all"
+          th:href="@{/css/user/full-list.css}"/>
+    <script src="https://kit.fontawesome.com/f1b017441a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+
+    <div class="header-bar">
+
+        <form class="log-info" th:action="@{/logout}" method="post">
+            <p sec:authorize="isAuthenticated()" sec:authentication="name">Username</p>
+            <button type="submit" sec:authorize="isAuthenticated()">Logout</button>
+        </form>
+
+        <div class="reg" sec:authorize="isAuthenticated()">
+            <span class="link"><a href="#">Your List</a></span>
+            <span class="link"><a th:href="@{/private/main}">Menu</a></span>
+        </div>
+    </div>
+
+    <div class="text">
+        <h1>Top Members</h1>
+        <div>
+            <p>
+                <b>Member: </b> <i>kepsnys</i> has <span>N</span> blogs, <span>N</span> comments and <span> N </span> likes <a href="#">READ</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Created by <b>Oleg Boreiša</b></p>
+    </div>
+</div>
+
+</body>
+</html>

@@ -30,11 +30,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                     .permitAll()
-                    .loginPage("/private/main") //[GET METHOD - TO GET LOGIN PAGE]
+                    .loginPage("/public/main") //[GET METHOD - TO GET LOGIN PAGE]
                     .loginProcessingUrl("/public/login")
                     .usernameParameter("username")
                     .passwordParameter("password")
-                    .defaultSuccessUrl("/private/main", true)
+                    .defaultSuccessUrl("/public/main", true)
                     .failureForwardUrl("/public/login-error")
                     .and()
                 .logout()

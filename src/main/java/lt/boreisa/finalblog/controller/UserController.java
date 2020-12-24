@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-//@RequestMapping("/public")
+@RequestMapping("/public")
 public class UserController {
 
     private final UserRepo userRepo;
@@ -25,26 +25,26 @@ public class UserController {
         this.userRepo = userRepo;
         this.roleRepo = roleRepo;
     }
+    /** Main Page */
+    @RequestMapping(path = "/main", method = RequestMethod.GET)
+    public String getMain () {
+        return "blog/index";
+    }
+
     // [SIGN UP]
-    @RequestMapping(path = "/public/login")
+    @RequestMapping(path = "/login")
     public String login() {
         return "user/signup";
     }
 
-    @RequestMapping(path = "/public/login-error")
+    @RequestMapping(path = "/login-error")
     public String loginError (Model model) {
         model.addAttribute("loginError", true);
         return "user/signup";
     }
 
-//    // [SIGN OUT]
-//    @RequestMapping(path = "/public/logout")
-//    public String logout() {
-//        return "user/signup";
-//    }
-
     // [REGISTER]
-    @RequestMapping(path = "/public/register", method = RequestMethod.GET)
+    @RequestMapping(path = "/register", method = RequestMethod.GET)
     public String addUser (@ModelAttribute (name = "user") User user, Model model) {
         //[FIND ROLES]
         List<Role> getRoles = roleRepo.findAll();
@@ -52,7 +52,7 @@ public class UserController {
         return "user/register";
     }
 
-    @RequestMapping(path = "/public/registered", method = RequestMethod.POST)
+    @RequestMapping(path = "/registered", method = RequestMethod.POST)
     public String addUsers (@Valid @ModelAttribute ("user") User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             List<Role> getRoles = roleRepo.findAll();
@@ -63,6 +63,6 @@ public class UserController {
 //        user.setPassword(encoder.encode(user.getPassword()));
 //        user.setMatchPassword(encoder.encode(user.getMatchPassword()));
         userRepo.save(user);
-        return "redirect:/public/login";
+        return "redirect:/login";
     }
 }
